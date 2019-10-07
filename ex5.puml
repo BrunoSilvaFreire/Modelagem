@@ -1,0 +1,17 @@
+@startuml
+[*] --> EmDesenvolvimento : Professor anuncia atividade em aula
+state EmDesenvolvimento {
+}
+
+EmDesenvolvimento -> Postada : Professor posta a atividade
+state Postada {
+}
+
+Postada -down-> Respondida : Aluno responde a atividade
+state Respondida {
+}
+
+Respondida -left-> Avaliada : Professor avalia a resposta do aluno
+state Avaliada {
+}
+@enduml

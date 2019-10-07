@@ -1,0 +1,32 @@
+@startuml
+title Diagrama de atividade
+
+partition "Professor " {
+
+(*)  --> "Desenvolver atividade A"
+--> "Postar atividade A na plataforma online (BB)      " as post
+--> ===S1===
+--> "Aguardar até data limite (DL)    " as await
+}
+partition "Estudante " {
+===S1=== -right> "Acessar atividade A utilizando dispositivo    "
+--> "Desenvolver resposta á atividade A em formato .txt      "
+--> "Postar a resposta desenvolvida na plataforma online (BB)       " as post2
+--> "Aguardar publicação da nota     " as await2
+await2 --> ===S3===
+}
+
+partition "Professor " {
+await --> ===S2===
+post2 --> ===S2===
+--> "Avaliar resposta enviada pelo aluno   "
+--> "Publicar nota" as post3
+
+--> ===S3===
+
+}
+partition "Estudante " {
+--> "Consultar nota"
+--> (*)
+}
+@enduml

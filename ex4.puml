@@ -1,0 +1,25 @@
+@startuml
+title Diagrama de interação
+actor Professor
+actor Aluno
+boundary BB
+collections Atividades
+
+autonumber
+Professor -> BB: Envia atividade
+BB -> Atividades: Publica atividade no banco de dados
+Aluno -> BB: Lê atividade
+BB -> Atividades: Solicita atividade no banco de dados
+Atividades -> BB: Fornece atividade
+BB -> Aluno: Fornece atividade
+Aluno -> Aluno: Desenvolve respostas
+Aluno -> BB: Publica respostas atividade
+BB -> Atividades: Armazena resposta das atividades
+Professor -> BB: Solicita atividades resolvidas
+BB -> Atividades: Solicita atividades resolvidas
+Atividades -> BB: Fornece atividades resolvidas
+BB -> Professor: Fornece atividades resolvidas
+Professor -> Professor: Corrige atividades
+Professor -> BB: Publica notas
+Aluno -> BB: Consulta notas
+@enduml

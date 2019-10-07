@@ -1,0 +1,25 @@
+@startuml
+:Professor: as Admin
+:Estudante: as Student
+(Acessar plataforma BB) as (AccessPlatform)
+(Postar atividades) as (PostActivity)
+(Corrigir respostas) as (CheckAnswers)
+(Aguardar data limite) as (AwaitActivity)
+(Postar respostas) as (PostAnswers)
+(Desenvolver respostas) as (DevelopAnswers)
+(Postar nota) as (PostScore)
+(Consultar nota) as (CheckScore)
+Admin --> (PostActivity)
+Admin --> (AwaitActivity)
+Admin --> (CheckAnswers)
+(PostScore) .up.> (CheckAnswers) : extends
+Student -up-> (PostAnswers)
+Student -up-> (DevelopAnswers)
+(PostActivity) .down.> (AccessPlatform) : includes
+(CheckAnswers) .down.> (AccessPlatform) : includes
+(CheckAnswers) .> (AwaitActivity) : includes
+(PostAnswers) .up.> (AccessPlatform) : includes
+(PostAnswers) .left.> (DevelopAnswers) : includes
+Student -> (CheckScore)
+(CheckScore) .up.> (AccessPlatform) : includes
+@enduml
