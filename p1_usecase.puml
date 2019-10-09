@@ -1,0 +1,27 @@
+@startuml
+title Diagrama de caso de uso
+:Engenheiro Autor: as Admin
+
+(Desenvolver texto técnico\n em formato PDF) as P1
+
+
+(Inserir e indexar\n lote de documentos) as A1
+(Inserir e indexar\n documento único) as A2
+(Remover lote de documentos \ne atualizar indices) as A3
+(Remover documentos único \ne atualizar indices) as A4
+Admin --> A1
+Admin --> A2
+Admin --> A3
+Admin --> A4
+P1 .up. A1: extends
+
+P1 .up. A2: extends
+
+:Engenheiro Usuário: as User
+(Consultar documentos) as U1
+(Visualizar documentos \nrecuperados) as U2
+
+User -up-> U1
+User -up-> U2
+
+@enduml

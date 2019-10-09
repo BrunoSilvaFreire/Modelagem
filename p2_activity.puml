@@ -1,0 +1,32 @@
+@startuml
+partition Usuário {
+(*)  -> "Iniciar compra   " as INIT
+-down> "Adicionar ou remover\n quantidade de item(s) do carrinho         " as M
+M -down> "Iniciar finalização da compra" as F
+}
+partition Sistema {
+-> "Atualizar estoque do produto    " as UPDATE
+INIT --left-> "Aguardar 60 minutos" as AWAIT
+if "Usuário cancelou compra?" then
+->[sim] "Limpar cesta" as CLEAN
+else
+->[não] F
+endif
+CLEAN --> UPDATE
+CLEAN --> (*)
+}
+partition Usuário {
+F -down> "Inserir dados (CPF/CNPJ & Endereço)      "
+-down> "Inserir forma de pagamento      "
+-down> "Realizar pagamento"
+}
+partition FastCards {
+-> "Validar cartão"
+if "Validado com sucesso?    " then
+   ->[sim] (*)
+else
+   ->[no] CLEAN
+endif
+
+}
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+scale 350 width
+[*] --> AguardandoCompra
+
+state AguardandoCompra {
+    AguardandoCompra -->PreparandoCesta : Sistema começa a contar 60 minutos
+    state PreparandoCesta {
+PreparandoCesta : Usuário pode adicionar,\nremover items da cestas, ou \n limpar a própria
+    }
+
+
+    state FinalizandoCompra {
+    FinalizandoCompra :  Usuário insere seus dados\n* CPF \n*CPNJ \n*Cartão para pagamento
+    }
+    state ValidandoCartão {
+    ValidandoCartão : FastCard pode completar a compra,\n ou limpar a cesta, cancelando-a\nautomaticamente
+    }
+
+}
+PreparandoCesta --> FinalizandoCompra : Usuário clicou em \n"Finalizar"
+AguardandoCompra --> [*] : Passaram 60 minutos
+FinalizandoCompra --> ValidandoCartão : FastCard inicia\n o processo de\n validação
+ValidandoCartão--> [*]
+@enduml

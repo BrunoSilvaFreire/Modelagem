@@ -1,0 +1,27 @@
+@startuml
+:Usuário: as User
+
+(Adicionar Item) as ADD
+(Remover Item) as REMOVE
+(Limpar cesta) as CLEAN
+(Finalizar compra) as END
+User --> ADD
+User --> REMOVE
+User --> CLEAN
+User --> END
+
+:Sistema: as System
+(Atualizar estoque) as UPDATE
+(Aguardar 60 min) AS AWAIT
+System --> AWAIT
+System --> UPDATE
+ADD ..> UPDATE: extends
+REMOVE ..> UPDATE: extends
+CLEAN ..> UPDATE: extends
+AWAIT ..> CLEAN: include
+AWAIT ..> END: include
+:FastCard:
+(Validar cartão)as VALIDATE
+FastCard --> VALIDATE
+END ..> VALIDATE: extends
+@enduml

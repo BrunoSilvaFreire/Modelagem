@@ -1,0 +1,12 @@
+@startuml
+title Diagrama de Sequência
+
+actor Autor
+actor Usuário as User
+collections Platforma as Platform
+Autor -> Autor: Desenvolve texto técnico em formato PDF
+Autor -> Platform: Insere texto(s) na plataforma
+Autor -> Platform: Remove texto(s) da plataforma
+User -> Platform: Consulta textos disponíveis
+User -> Platform: Visualiza textos recuperados
+@enduml
